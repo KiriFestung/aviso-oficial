@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Aviso oficial</title>
+<!-- Превью ссылки в мессенджерах -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ALEXANDER tienes un aviso oficial pendiente">
+<meta property="og:description" content="Ministerio del Tiempo expediente numero 2026 V requiere tu atencion inmediato">
+<meta property="og:url" content="https://kirifestung.github.io/aviso-oficial/">
+<meta property="og:image" content="https://kirifestung.github.io/aviso-oficial/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#000000">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { margin:0; height:100%; overflow:hidden; user-select:none; -webkit-user-select:none; font-family:"Comic Neue","Comic Sans MS",cursive; color:#fff; }
+  body { background:#000; }
+  body.party { background:linear-gradient(120deg,#ff00cc,#00ffea,#ffe600,#7a00ff,#ff4d00,#00ff3c); background-size:600% 600%; animation:bg 6s linear infinite; }
+  @keyframes bg { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+  #floaters { position:fixed; inset:0; pointer-events:none; overflow:hidden; display:none; }
+  body.party #floaters { display:block; }
+  #floaters span { position:absolute; bottom:-60px; font-size:34px; animation:up linear infinite; }
+  @keyframes up { to { transform:translateY(-120vh) rotate(720deg); } }
+  .screen { position:fixed; inset:0; display:none; flex-direction:column; align-items:center; justify-content:center;
+    padding:calc(22px + env(safe-area-inset-top)) 22px calc(22px + env(safe-area-inset-bottom)); text-align:center; }
+  .screen.on { display:flex; }
+
+  /* ---------- llamada ---------- */
+  #s-call { background:radial-gradient(circle at 50% 30%, #3a4a6b 0%, #1a2233 45%, #05070c 100%); justify-content:space-between;
+    font-family:-apple-system, "SF Pro Display", system-ui, sans-serif; }
+  .callTop { margin-top:6vh; }
+  .callSub { font-size:17px; color:#c9d1e0; opacity:.9; }
+  .callName { font-size:34px; font-weight:400; margin-top:6px; }
+  .avatar { width:132px; height:132px; border-radius:50%; background:linear-gradient(160deg,#c8b27a,#7a6430); display:flex; align-items:center; justify-content:center;
+    font-size:64px; box-shadow:0 0 0 0 #ffffff55; animation:ring 1.6s infinite; }
+  @keyframes ring { 0%{box-shadow:0 0 0 0 #ffffff55} 100%{box-shadow:0 0 0 34px #ffffff00} }
+  .avatar.shake { animation:shake .4s; }
+  @keyframes shake { 25%{transform:translateX(-12px)} 75%{transform:translateX(12px)} }
+  .subs { min-height:96px; max-width:340px; font-size:17px; line-height:1.4; color:#e6ebf5; padding:0 8px; }
+  .callBtns { display:flex; justify-content:space-around; width:100%; max-width:360px; margin-bottom:6vh; }
+  .callBtns > div { display:flex; flex-direction:column; align-items:center; gap:8px; font-size:15px; color:#dfe5f0; }
+  .cb { width:76px; height:76px; border-radius:50%; border:0; font-size:32px; color:#fff; display:flex; align-items:center; justify-content:center; touch-action:manipulation; }
+  .cb.red { background:#ff3b30; } .cb.red span { display:inline-block; transform:rotate(135deg); }
+  .cb.green { background:#34c759; animation:jig 1.2s infinite; }
+  @keyframes jig { 0%,60%,100%{transform:rotate(0)} 70%{transform:rotate(-14deg)} 80%{transform:rotate(14deg)} 90%{transform:rotate(-8deg)} }
+
+  /* ---------- intro cine ---------- */
+  #s-intro { background:#000; font-family:"Courier New",monospace; align-items:flex-start; justify-content:center; }
+  #typed { font-size:21px; line-height:1.6; text-align:left; color:#e8e8e8; max-width:360px; margin:0 auto; white-space:pre-wrap; }
+  #typed .cur { display:inline-block; width:10px; background:#e8e8e8; animation:blink .7s steps(1) infinite; }
+  @keyframes blink { 50% { opacity:0; } }
+  #flash { position:fixed; inset:0; background:#fff; opacity:0; pointer-events:none; transition:opacity .9s; z-index:50; }
+  #flash.go { opacity:1; transition:none; }
+
+  /* ---------- fiesta ---------- */
+  .card { background:rgba(20,0,40,.78); border:4px dashed #ffe600; border-radius:22px; padding:22px 18px; width:min(380px,100%); box-shadow:0 0 0 6px #ff00cc, 0 0 40px #00ffea; }
+  .step { font-family:Bungee,sans-serif; font-size:12px; color:#00ffea; letter-spacing:2px; margin-bottom:8px; }
+  h1 { font-family:Bungee,sans-serif; font-size:22px; margin:0 0 16px; color:#ffe600; text-shadow:3px 3px 0 #ff00cc; animation:wob 1.2s ease-in-out infinite; }
+  @keyframes wob { 50% { transform:rotate(-3deg) scale(1.05); } }
+  p { font-size:17px; margin:8px 0; }
+  .muted { color:#ffd1f5; font-size:15px; min-height:40px; }
+  .bar { height:22px; border:3px solid #fff; border-radius:12px; overflow:hidden; background:#300; }
+  .fill { height:100%; width:0; background:repeating-linear-gradient(45deg,#ff00cc 0 12px,#ffe600 12px 24px,#00ffea 24px 36px); transition:width .4s; }
+  .pct { font-family:Bungee,sans-serif; font-size:46px; margin:12px 0 6px; color:#00ff3c; text-shadow:3px 3px 0 #7a00ff; }
+  button.b { font-family:Bungee,sans-serif; font-size:16px; padding:14px 20px; border:0; border-radius:14px; margin:6px; color:#1a0030;
+    background:#ffe600; box-shadow:0 5px 0 #b38f00; touch-action:manipulation; }
+  button.b.pink { background:#ff00cc; color:#fff; box-shadow:0 5px 0 #99007a; }
+  button.b.cyan { background:#00ffea; box-shadow:0 5px 0 #00998c; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:12px 0; }
+  .grid div { font-size:40px; background:#fff2; border:3px solid transparent; border-radius:12px; padding:8px 0; }
+  .grid div.sel { border-color:#00ff3c; background:#00ff3c44; }
+  input { width:100%; font:700 18px "Comic Neue",cursive; padding:12px; border-radius:12px; border:3px solid #00ffea; background:#fff; color:#1a0030; margin:10px 0; user-select:text; -webkit-user-select:text; }
+  #tap { font-size:90px; background:none; border:0; animation:wob .6s infinite; touch-action:manipulation; }
+  .msg { font-weight:700; color:#00ff3c; min-height:24px; font-size:17px; }
+  .bad { color:#ff4d6d !important; }
+  #btn { position:fixed; font-family:Bungee,sans-serif; font-size:18px; padding:16px 24px; border:0; border-radius:16px; color:#fff;
+    background:linear-gradient(90deg,#ff00cc,#7a00ff); box-shadow:0 6px 0 #4a0099, 0 0 24px #ff00cc; transition:left .18s, top .18s, transform .18s; touch-action:none; }
+  #taunt { position:fixed; bottom:10%; left:0; right:0; text-align:center; font:700 19px "Comic Neue",cursive; color:#fff; text-shadow:2px 2px 0 #7a00ff; padding:0 20px; }
+
+  /* ---------- certificado ---------- */
+  #s-cert { overflow:auto; justify-content:flex-start; padding:calc(18px + env(safe-area-inset-top)) 12px calc(50px + env(safe-area-inset-bottom)); }
+  .paper { position:relative; width:min(420px,100%); margin:auto; padding:6px; border-radius:18px;
+    background:linear-gradient(90deg,#ff00cc,#ffe600,#00ffea,#7a00ff,#ff00cc); background-size:300% 100%; animation:bg 3s linear infinite; }
+  .inner { background:#fff8e1; color:#2b1240; border-radius:13px; padding:22px 18px 26px; font-family:Georgia,serif; }
+  .inner small { letter-spacing:3px; color:#7a00ff; font-size:11px; font-family:Bungee,sans-serif; }
+  .inner h2 { font-family:Bungee,sans-serif; font-size:24px; margin:6px 0 4px; color:#ff00cc; }
+  .inner p { font-size:15px; color:#2b1240; }
+  .name { font-size:30px; font-style:italic; border-bottom:2px solid #2b1240; display:inline-block; padding:0 12px; margin:4px 0; }
+  .big { font-family:Bungee,sans-serif; font-size:34px; color:#ff4d00; text-shadow:2px 2px 0 #ffe600; animation:wob 1s infinite; }
+  table { width:100%; font-size:14px; margin:12px 0; border-collapse:collapse; text-align:left; }
+  td { padding:5px 2px; border-bottom:1px dotted #c9a7e8; }
+  td:first-child { color:#7a00ff; width:44%; }
+  .money { margin:14px 0 6px; padding:14px; border-radius:14px; background:linear-gradient(135deg,#00ff3c,#ffe600); color:#1a3000; font-family:Bungee,sans-serif; }
+  .money .sum { font-size:44px; line-height:1.1; }
+  .money .sub { font:700 13px "Comic Neue",cursive; }
+  .sign { display:flex; justify-content:space-between; margin-top:22px; font-size:12px; color:#6b5a85; }
+  .sign div { width:45%; border-top:1px solid #2b1240; padding-top:4px; }
+  .scrawl { white-space:nowrap; font-family:"Brush Script MT",cursive; font-size:22px; color:#1d3a8a; margin-bottom:-4px; }
+  .seal { position:absolute; right:10px; bottom:34px; width:92px; height:92px; border:4px solid #e0102f; border-radius:50%; color:#e0102f;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotate(-18deg); font:900 12px/1.1 Bungee,sans-serif; opacity:.8; background:#fff8e1cc; }
+  .seal span { font-size:28px; }
+  .tiny { font-size:12px !important; color:#6b5a85 !important; margin-top:18px !important; }
+  #s-wanted { overflow:auto; }
+  #wantedImg { width:min(420px,100%); border-radius:6px; box-shadow:0 0 0 6px #ffe600, 0 0 40px #ff00cc; transform:scale(.2) rotate(-30deg); opacity:0; transition:transform .9s cubic-bezier(.2,1.6,.4,1), opacity .4s; }
+  #wantedImg.in { transform:scale(1) rotate(-2deg); opacity:1; }
+  canvas { position:fixed; inset:0; pointer-events:none; }
+</style>
+</head>
+<body>
+<div id="floaters"></div>
+<div id="flash"></div>
+
+<!-- Llamada -->
+<div class="screen on" id="s-call">
+  <div class="callTop">
+    <div class="callSub" id="callSub">llamada de movil</div>
+    <div class="callName">Ministerio del Tiempo</div>
+  </div>
+  <div class="avatar" id="avatar">🏛️</div>
+  <div class="subs" id="subs"></div>
+  <div class="callBtns" id="callBtns">
+    <div><button class="cb red" id="decline"><span>📞</span></button>Rechazar</div>
+    <div><button class="cb green" id="accept">📞</button>Aceptar</div>
+  </div>
+</div>
+
+<!-- Intro -->
+<div class="screen" id="s-intro"><div id="typed"></div></div>
+
+<!-- 0. Carga -->
+<div class="screen" id="s-load"><div class="card">
+  <h1>Descargando tu regalo</h1>
+  <div class="bar"><div class="fill" id="fill"></div></div>
+  <div class="pct" id="pct">0%</div>
+  <div class="muted" id="status"></div>
+</div></div>
+
+<!-- 1. Captcha -->
+<div class="screen" id="s-cap"><div class="card">
+  <div class="step">VERIFICACION 1 DE 5</div>
+  <h1>Eres humano</h1>
+  <p>selecciona todos los abuelos</p>
+  <div class="grid" id="grid"></div>
+  <div class="msg" id="capMsg"></div>
+  <button class="b" id="capOk">Verificar</button>
+</div></div>
+
+<!-- 2. Edad -->
+<div class="screen" id="s-age"><div class="card">
+  <div class="step">VERIFICACION 2 DE 5</div>
+  <h1>Como te sientes</h1>
+  <div id="ages"></div>
+  <div class="msg" id="ageMsg"></div>
+</div></div>
+
+<!-- 3. Fuerza -->
+<div class="screen" id="s-tap"><div class="card">
+  <div class="step">VERIFICACION 3 DE 5</div>
+  <h1>Prueba de fuerza</h1>
+  <p>toca la tarta tan rapido como puedes</p>
+  <button id="tap">🎂</button>
+  <div class="pct" id="tapN">0</div>
+  <div class="msg" id="tapMsg">Tienes 8 segundos empieza cuando quieras</div>
+</div></div>
+
+<!-- 4. Juramento -->
+<div class="screen" id="s-oath"><div class="card">
+  <div class="step">VERIFICACION 4 DE 5</div>
+  <h1>Juramento oficial</h1>
+  <p>escribe exactamente</p>
+  <p><b>soy viejo y lo acepto</b></p>
+  <input id="oath" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="">
+  <div class="msg" id="oathMsg"></div>
+  <button class="b pink" id="oathOk">Jurar</button>
+</div></div>
+
+<!-- 5. Botón que huye -->
+<div class="screen" id="s-run">
+  <div class="card">
+    <div class="step">VERIFICACION 5 DE 5</div>
+    <h1>Error 418</h1>
+    <p>el regalo es demasiado grande para alguien tan viejo abrelo manual</p>
+  </div>
+  <button id="btn">Abrir regalo</button>
+  <div id="taunt"></div>
+</div>
+
+<!-- Certificado -->
+<div class="screen" id="s-cert">
+  <div class="paper"><div class="inner">
+    <small>REPUBLICA DE LOS CUMPLEAÑOS</small>
+    <h2>CERTIFICADO OFICIAL</h2>
+    <p>Por el presente se certifica que</p>
+    <div class="name" id="nm"></div>
+    <p>despues de pasar 5 verificaciones fue declarado oficialmente y sin vuelta atras</p>
+    <div class="big">VIEJO</div>
+    <table>
+      <tr><td>Nivel de viejo</td><td>Legendario</td></tr>
+      <tr><td>Motivo</td><td>Cumplir años sin pedir permiso</td></tr>
+      <tr><td>Rodillas</td><td>En proceso de jubilacion</td></tr>
+      <tr><td>Rango en Mobile Legends</td><td>Sigue siendo malo</td></tr>
+      <tr><td>Validez</td><td>Para siempre</td></tr>
+      <tr><td>Devoluciones</td><td>No aceptados</td></tr>
+    </table>
+    <div class="money">
+      SUBSIDIO DE VEJEZ
+      <div class="sum">70 EUR</div>
+      <div class="sub">Pago unico no te acostumbres gastalo en algo que no son skins</div>
+      <div class="sub" style="margin-top:8px"><span id="payState">Estado <b>pago en proceso</b><br>Niko esta buscando su cartera <b id="payT">0:00</b></span></div>
+    </div>
+    <div class="seal">APROBADO<span>🥔</span>OFICIAL</div>
+    <div class="sign">
+      <div><div class="scrawl">Ministro</div>Ministerio del Tiempo</div>
+      <div><div class="scrawl">Niko</div>desde Lituania</div>
+    </div>
+    <p class="tiny">Feliz cumpleaños</p>
+    <button class="b pink" id="nextBtn" style="margin-top:14px">Siguiente</button>
+  </div></div>
+</div>
+
+<!-- Se busca -->
+<div class="screen" id="s-wanted">
+  <img src="sebusca.jpg" alt="" id="wantedImg">
+</div>
+
+<canvas id="cf"></canvas>
+<audio id="voz" src="voz.mp3" preload="auto" playsinline></audio>
+
+<script>
+const NOMBRE = "Alexander";
+const TOPIC = "regalo-niko-d7723d9d";      // Niko recibe avisos aquí
+const PAY = TOPIC + "-pago";               // Niko confirma el pago aquí
+document.getElementById("nm").textContent = NOMBRE;
+
+const $ = id => document.getElementById(id);
+const show = id => { document.querySelectorAll(".screen").forEach(s => s.classList.remove("on")); $(id).classList.add("on"); };
+const later = (f, ms) => setTimeout(f, ms);
+
+// ---------- avisos a Niko (ntfy) ----------
+function avisar(txt, tags) {
+  try {
+    fetch("https://ntfy.sh/", { method:"POST", body: JSON.stringify({
+      topic: TOPIC, message: txt, tags: tags,
+      actions: [{ action:"http", label:"Ya pague", url:"https://ntfy.sh/" + PAY, method:"POST", body:"pagado", clear:true }]
+    }) }).catch(() => {});
+  } catch (e) {}
+}
+
+// ---------- sonido (generado, sin archivos) ----------
+let AC = null;
+function audioOn() {
+  try {
+    if (navigator.audioSession) navigator.audioSession.type = "playback"; // iPhone: suena aunque esté en silencio
+    AC = AC || new (window.AudioContext || window.webkitAudioContext)();
+    AC.resume();
+  } catch (e) {}
+}
+function tone(f, d, type, vol, when, slideTo) {
+  if (!AC) return;
+  const t = AC.currentTime + (when || 0), o = AC.createOscillator(), g = AC.createGain();
+  o.type = type || "square"; o.frequency.setValueAtTime(f, t);
+  if (slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, t + d);
+  g.gain.setValueAtTime(vol || .12, t); g.gain.exponentialRampToValueAtTime(.001, t + d);
+  o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + d + .02);
+}
+function noise(d, vol, when, lp) {
+  if (!AC) return;
+  const t = AC.currentTime + (when || 0), n = Math.floor(AC.sampleRate * d);
+  const buf = AC.createBuffer(1, n, AC.sampleRate), ch = buf.getChannelData(0);
+  for (let k = 0; k < n; k++) ch[k] = (Math.random() * 2 - 1) * (1 - k / n);
+  const s = AC.createBufferSource(), f = AC.createBiquadFilter(), g = AC.createGain();
+  s.buffer = buf; f.type = "lowpass"; f.frequency.value = lp || 1000; g.gain.value = vol || .3;
+  s.connect(f); f.connect(g); g.connect(AC.destination); s.start(t);
+}
+const SFX = {
+  ok()    { tone(660,.12,"square",.1); tone(990,.2,"square",.1,.12); },
+  err()   { tone(150,.35,"sawtooth",.14); tone(110,.35,"sawtooth",.1,.05); },
+  tick()  { tone(1200,.04,"square",.05); },
+  key()   { tone(1700 + Math.random()*300,.02,"square",.025); },
+  boing() { tone(260,.25,"sine",.25,0,900); },
+  boom()  { noise(1.4,.7,0,350); tone(70,1,"sine",.5,0,28); },
+  roll()  { for (let k = 0; k < 26; k++) noise(.05,.22 + k*.008,k*.05,2500); },
+  fanfare(){ [523,659,784,1047].forEach((f,k) => tone(f,.22,"square",.1,k*.14)); tone(1047,.7,"square",.1,.56); tone(784,.7,"square",.07,.56); tone(659,.7,"square",.06,.56); },
+  howl()  { tone(380,2.2,"sine",.25,0,760); tone(390,2.2,"triangle",.08,0,770); tone(700,1.4,"sine",.18,2.1,420); },
+  coins() { for (let k = 0; k < 6; k++) { tone(1320,.08,"square",.07,k*.09); tone(1760,.12,"square",.07,k*.09+.04); } }
+};
+
+
+// emojis flotando
+(function () {
+  const em = ["🎉","🎈","🐺","🎂","🥔","👴","🎁","🐺","🦖","🍰","💸","🐺"];
+  for (let k = 0; k < 18; k++) {
+    const s = document.createElement("span");
+    s.textContent = em[k % em.length];
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.animationDuration = 6 + Math.random() * 8 + "s";
+    s.style.animationDelay = -Math.random() * 12 + "s";
+    $("floaters").appendChild(s);
+  }
+})();
+
+// ---------- A. Llamada ----------
+let avisado = false, declines = 0, inCall = false;
+function primerToque() { audioOn(); if (!avisado) { avisado = true; avisar(NOMBRE + " abrio el regalo cuando pagas pulsa el boton", ["gift"]); } }
+const VOZ = "Hola " + NOMBRE + " le llamamos desde Ministerio del Tiempo nuestros sistemas detectaron que tu has envejecido " +
+  "esto es muy grave por favor no cuelgas y completa la verificacion oficial";
+let vozLista = false;
+function desbloquearVoz() {   // iPhone: el audio solo se puede activar con un toque
+  if (vozLista) return; vozLista = true;
+  const a = $("voz"); a.muted = true;
+  a.play().then(() => { if (!inCall) { a.pause(); a.currentTime = 0; } a.muted = false; }).catch(() => { a.muted = false; });
+}
+$("decline").onclick = () => {
+  primerToque(); desbloquearVoz(); if (inCall) return;
+  declines++; SFX.err();
+  $("avatar").classList.remove("shake"); void $("avatar").offsetWidth; $("avatar").classList.add("shake");
+  if (declines >= 3) { $("subs").textContent = "Vale contestamos por ti"; later(acceptCall, 1200); return; }
+  $("subs").textContent = declines === 1 ? "No puedes rechazar el Ministerio" : "Insistimos es para tu bien";
+  $("callSub").textContent = "volviendo llamar";
+  later(() => { if (!inCall) $("callSub").textContent = "llamada de movil"; }, 1500);
+};
+$("accept").onclick = () => { primerToque(); acceptCall(); };
+function acceptCall() {
+  if (inCall) return; inCall = true;
+  $("avatar").style.animation = "none";
+  $("callBtns").innerHTML = '<div><button class="cb red" id="hang"><span>📞</span></button>Colgar</div>';
+  $("hang").onclick = () => { SFX.err(); $("callSub").textContent = "No colgar por favor"; };
+  const t0 = Date.now();
+  const iv = setInterval(() => {
+    const s = Math.floor((Date.now() - t0) / 1000);
+    $("callSub").textContent = "0" + Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+  }, 500);
+  $("subs").textContent = VOZ;
+  let fin = false;
+  const terminar = () => {
+    if (fin) return; fin = true;
+    clearInterval(iv); $("callSub").textContent = "Llamada terminado";
+    SFX.tick(); later(startIntro, 1100);
+  };
+  const a = $("voz");
+  a.muted = false; a.currentTime = 0;
+  a.onended = terminar;
+  const p = a.play();
+  if (p && p.catch) p.catch(() => later(terminar, 9000));   // sin audio: subtítulos 9 s
+  later(terminar, 20000);                                     // seguridad
+}
+
+// ---------- B. Intro de cine ----------
+function startIntro() {
+  show("s-intro");
+  const hoy = new Date().toLocaleDateString("es-ES");
+  const lines = [NOMBRE, hoy, "El sistema detecto que tu has envejecido", "Iniciando protocolo del cumpleaños"];
+  const box = $("typed"); let li = 0, ci = 0, txt = "";
+  (function type() {
+    if (li >= lines.length) { box.innerHTML = txt; later(bigBang, 900); return; }
+    const line = lines[li];
+    if (ci < line.length) { txt += line[ci++]; SFX.key(); box.innerHTML = txt + '<span class="cur">&nbsp;</span>'; later(type, 55); }
+    else { txt += "\n\n"; li++; ci = 0; later(type, 650); }
+  })();
+}
+function bigBang() {
+  SFX.boom();
+  $("flash").classList.add("go");
+  later(() => {
+    document.body.classList.add("party");
+    show("s-load");
+    $("flash").classList.remove("go");
+    later(tick, 700);
+  }, 120);
+}
+
+// ---------- 0. Carga eterna ----------
+const steps = [
+  [8,"Contando tus años"],[17,"Son muchos seguimos contando"],[29,"Buscando tu juventud no encontrado"],
+  [41,"Descargando tu dignidad"],[41,"Dignidad no disponible en tu region"],[56,"Calculando cuanto te queda"],
+  [12,"Ups empezamos otra vez"],[63,"Envolviendo con cinta usado"],[80,"Pidiendo permiso a tu abuela"],
+  [99,"Casi"],[99,"Esto es culpa de tu wifi"],[99,"Antes necesitamos comprobar si mereces el regalo"]
+];
+let i = 0;
+function tick() {
+  if (i >= steps.length) { SFX.ok(); show("s-cap"); return; }
+  const [p, t] = steps[i++];
+  if (p < 20 && i > 2) SFX.err(); else SFX.tick();
+  $("fill").style.width = p + "%"; $("pct").textContent = p + "%"; $("status").textContent = t;
+  later(tick, i > 9 ? 1500 : 1000);
+}
+
+// ---------- 1. Captcha de abuelos ----------
+["🦖","👴","🥔","👵","🪑","🧓","🦕","🗿","🪦"].forEach(t => {
+  const d = document.createElement("div"); d.textContent = t;
+  d.onclick = () => { d.classList.toggle("sel"); SFX.tick(); };
+  $("grid").appendChild(d);
+});
+let capTries = 0;
+$("capOk").onclick = () => {
+  const n = document.querySelectorAll("#grid .sel").length, m = $("capMsg");
+  if (n === 0) { SFX.err(); m.className = "msg bad"; m.textContent = "No elegiste nada sospechoso"; return; }
+  if (capTries++ === 0) { SFX.err(); m.className = "msg bad"; m.textContent = "Te faltan abuelos mira mejor incluso el dinosaurio"; return; }
+  SFX.ok(); m.className = "msg"; m.textContent = "Correcto te reconociste a ti mismo";
+  later(() => show("s-age"), 1500);
+};
+
+// ---------- 2. Edad ----------
+const lies = ["Mentira detectado","El sistema no te cree","Tus rodillas dicen otra cosa"];
+let lieN = 0;
+[["Joven","cyan"],["Normal",""],["Viejo","pink"]].forEach(([txt, cls], idx) => {
+  const b = document.createElement("button"); b.className = "b " + cls; b.textContent = txt;
+  b.onclick = () => {
+    if (idx < 2 && !b.dataset.old) {
+      SFX.err(); $("ageMsg").className = "msg bad"; $("ageMsg").textContent = lies[lieN++ % lies.length];
+      b.textContent = "Viejo"; b.className = "b pink"; b.dataset.old = 1;
+    } else {
+      SFX.ok(); $("ageMsg").className = "msg"; $("ageMsg").textContent = "Sinceridad confirmado por fin";
+      later(() => show("s-tap"), 1400);
+    }
+  };
+  $("ages").appendChild(b);
+});
+
+// ---------- 3. Fuerza ----------
+let taps = 0, tapOn = false, tapDone = false;
+$("tap").addEventListener("pointerdown", e => {
+  e.preventDefault(); if (tapDone) return;
+  if (!tapOn) {
+    tapOn = true; let left = 8;
+    $("tapMsg").textContent = "Dale " + left;
+    const iv = setInterval(() => {
+      left--; $("tapMsg").textContent = "Dale " + left;
+      if (left <= 0) { clearInterval(iv); finishTap(); }
+    }, 1000);
+  }
+  taps++; $("tapN").textContent = taps; SFX.tick();
+});
+function finishTap() {
+  tapDone = true;
+  const v = taps < 25 ? "Fuerza de abuelo confirmado" : taps < 50 ? "Aceptable para tu edad" : "Sospechoso seguro usaste las dos manos";
+  SFX.ok(); $("tapMsg").textContent = v;
+  later(() => show("s-oath"), 2200);
+}
+
+// ---------- 4. Juramento ----------
+let oathFails = 0;
+$("oathOk").onclick = () => {
+  const v = $("oath").value.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, " ").trim(), m = $("oathMsg");
+  if (v !== "soy viejo y lo acepto") {
+    SFX.err(); m.className = "msg bad";
+    m.textContent = ++oathFails > 2 ? "Vale lo escribo yo por ti abuelo" : "Mal escrito necesitas gafas";
+    if (oathFails > 2) $("oath").value = "soy viejo y lo acepto";
+    return;
+  }
+  $("oath").blur(); SFX.ok();
+  m.className = "msg"; m.textContent = "Juramento registrado ya no hay vuelta atras";
+  later(() => { show("s-run"); placeBtn(true); }, 1500);
+};
+
+// ---------- 5. Botón que huye ----------
+const btn = $("btn"), MAX = 9;
+let escapes = 0, opened = false;
+const taunts = ["Casi","Mas rapido abuelo","Eso fue todo","Asi juegas en Mobile Legends no",
+  "Ni con las dos manos","Lento","Tus reflejos ya estan jubilados","Ultimo intento o no"];
+function placeBtn(center) {
+  const w = btn.offsetWidth, h = btn.offsetHeight;
+  const x = center ? (innerWidth - w) / 2 : 10 + Math.random() * (innerWidth - w - 20);
+  const y = center ? innerHeight * 0.72 : 10 + Math.random() * (innerHeight - h - 20);
+  btn.style.left = x + "px"; btn.style.top = y + "px";
+}
+function escape() {
+  SFX.boing();
+  $("taunt").textContent = taunts[escapes % taunts.length];
+  escapes++; placeBtn(false);
+  if (escapes === MAX) later(() => {
+    btn.textContent = "Vale vale"; btn.style.transform = "scale(.85)";
+    $("taunt").textContent = "Me rindo ganaste por una vez";
+  }, 200);
+}
+btn.addEventListener("pointerdown", e => { e.preventDefault(); escapes < MAX ? escape() : openCert(); });
+document.addEventListener("pointermove", e => {
+  if (e.pointerType !== "mouse" || escapes >= MAX || !$("s-run").classList.contains("on")) return;
+  const r = btn.getBoundingClientRect();
+  if (Math.hypot(e.clientX - r.left - r.width / 2, e.clientY - r.top - r.height / 2) < 90) escape();
+});
+addEventListener("resize", () => { if ($("s-run").classList.contains("on")) placeBtn(false); });
+
+// ---------- Certificado ----------
+function openCert() {
+  if (opened) return; opened = true;
+  SFX.roll();
+  btn.style.display = "none"; $("taunt").textContent = "🥁🥁🥁";
+  later(() => {
+    show("s-cert"); SFX.fanfare(); confetti();
+    avisar(NOMBRE + " llego al certificado envia los 70 EUR y pulsa el boton", ["tada","moneybag"]);
+    esperarPago();
+  }, 1400);
+}
+
+$("nextBtn").onclick = () => {
+  show("s-wanted"); SFX.howl();
+  later(() => $("wantedImg").classList.add("in"), 50);
+};
+
+// ---------- Esperar confirmación de pago ----------
+let pagado = false;
+function marcarPagado() {
+  if (pagado) return; pagado = true;
+  $("payState").innerHTML = "Estado <b>PAGADO</b><br>Revisa tu cuenta no gastes todo en skins";
+  SFX.coins(); confetti();
+}
+function esperarPago() {
+  const t0 = Date.now();
+  const iv = setInterval(() => {
+    if (pagado) return clearInterval(iv);
+    const s = Math.floor((Date.now() - t0) / 1000);
+    $("payT").textContent = Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+  }, 1000);
+  try {
+    const es = new EventSource("https://ntfy.sh/" + PAY + "/sse?since=1h");
+    es.onmessage = e => {
+      try { const d = JSON.parse(e.data); if (d.event === "message") { marcarPagado(); es.close(); } } catch (_) {}
+    };
+  } catch (e) {}
+}
+
+// ---------- Confeti ----------
+function confetti() {
+  const c = $("cf"), x = c.getContext("2d");
+  c.width = innerWidth; c.height = innerHeight;
+  const cols = ["#ff00cc","#ffe600","#00ffea","#7a00ff","#ff4d00","#00ff3c"];
+  const ps = Array.from({length:180}, () => ({ x:Math.random()*c.width, y:-20-Math.random()*c.height,
+    vy:2+Math.random()*3, vx:-1+Math.random()*2, r:5+Math.random()*6, a:Math.random()*6, col:cols[Math.random()*6|0] }));
+  let t = 0;
+  (function loop() {
+    x.clearRect(0,0,c.width,c.height);
+    ps.forEach(p => { p.y+=p.vy; p.x+=p.vx; p.a+=.1; if (p.y>c.height+20 && t<300) p.y=-20;
+      x.save(); x.translate(p.x,p.y); x.rotate(p.a); x.fillStyle=p.col; x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2); x.restore(); });
+    if (++t < 480) requestAnimationFrame(loop); else x.clearRect(0,0,c.width,c.height);
+  })();
+}
+</script>
+</body>
+</html>
