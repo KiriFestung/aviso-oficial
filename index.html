@@ -85,7 +85,17 @@
   #s-cert { overflow:auto; justify-content:flex-start; padding:calc(18px + env(safe-area-inset-top)) 12px calc(50px + env(safe-area-inset-bottom)); }
   .paper { position:relative; width:min(420px,100%); margin:auto; padding:6px; border-radius:18px;
     background:linear-gradient(90deg,#ff00cc,#ffe600,#00ffea,#7a00ff,#ff00cc); background-size:300% 100%; animation:bg 3s linear infinite; }
-  .inner { background:#fff8e1; color:#2b1240; border-radius:13px; padding:22px 18px 26px; font-family:Georgia,serif; }
+  .inner { position:relative; overflow:hidden; color:#2b1240; border-radius:13px; padding:22px 18px 26px; font-family:Georgia,serif;
+    background:url(papel.jpg) center/cover,
+      repeating-radial-gradient(circle at 0 0, transparent 0 7px, rgba(122,0,255,.06) 7px 8px),
+      repeating-radial-gradient(circle at 100% 100%, transparent 0 9px, rgba(255,0,204,.05) 9px 10px), #fff8e1; }
+  .inner > * { position:relative; z-index:1; }
+  .inner .wm { position:absolute; z-index:0; top:22%; left:50%; width:240px; margin-left:-120px; opacity:.07; pointer-events:none; }
+  .inner .wm svg { fill:#2b1240; width:100%; }
+  .seal { opacity:0; }
+  .seal.drop { animation:stamp .45s cubic-bezier(.3,1.6,.5,1) forwards; }
+  @keyframes stamp { from { opacity:0; transform:rotate(-40deg) scale(4); } to { opacity:.85; transform:rotate(-18deg) scale(1); } }
+  .paper.thud { animation:shake .3s; }
   .inner small { letter-spacing:3px; color:#7a00ff; font-size:11px; font-family:Bungee,sans-serif; }
   .inner h2 { font-family:Bungee,sans-serif; font-size:24px; margin:6px 0 4px; color:#ff00cc; }
   .inner p { font-size:15px; color:#2b1240; }
@@ -97,22 +107,65 @@
   .money { margin:14px 0 6px; padding:14px; border-radius:14px; background:linear-gradient(135deg,#00ff3c,#ffe600); color:#1a3000; font-family:Bungee,sans-serif; }
   .money .sum { font-size:44px; line-height:1.1; }
   .money .sub { font:700 13px "Comic Neue",cursive; }
-  .sign { display:flex; justify-content:space-between; margin-top:22px; font-size:12px; color:#6b5a85; }
+  .sign { position:relative; display:flex; justify-content:space-between; margin-top:22px; font-size:12px; color:#6b5a85; }
   .sign div { width:45%; border-top:1px solid #2b1240; padding-top:4px; }
   .scrawl { white-space:nowrap; font-family:"Brush Script MT",cursive; font-size:22px; color:#1d3a8a; margin-bottom:-4px; }
-  .seal { position:absolute; right:10px; bottom:34px; width:92px; height:92px; border:4px solid #e0102f; border-radius:50%; color:#e0102f;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotate(-18deg); font:900 12px/1.1 Bungee,sans-serif; opacity:.8; background:#fff8e1cc; }
+  .seal { z-index:2 !important; position:absolute; left:50%; margin-left:-46px; bottom:-14px; width:92px !important; border-top:4px solid #e0102f !important; padding:0 !important; width:92px; height:92px; border:4px solid #e0102f; border-radius:50%; color:#e0102f;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; transform:rotate(-18deg); font:900 12px/1.1 Bungee,sans-serif; opacity:0; background:#fff8e1cc; }
   .seal span { font-size:28px; }
   .tiny { font-size:12px !important; color:#6b5a85 !important; margin-top:18px !important; }
   #s-wanted { overflow:auto; }
   #wantedImg { width:min(420px,100%); border-radius:6px; box-shadow:0 0 0 6px #ffe600, 0 0 40px #ff00cc; transform:scale(.2) rotate(-30deg); opacity:0; transition:transform .9s cubic-bezier(.2,1.6,.4,1), opacity .4s; }
   #wantedImg.in { transform:scale(1) rotate(-2deg); opacity:1; }
+  /* barra de juventud */
+  #hp { position:fixed; top:calc(10px + env(safe-area-inset-top)); left:50%; transform:translateX(-50%); width:min(340px,90%); z-index:20; display:none;
+    font-family:Bungee,sans-serif; font-size:13px; text-align:left; color:#fff; text-shadow:2px 2px 0 #000; }
+  #hp.show { display:block; }
+  #hp.hit { animation:shake .35s; }
+  .hpBar { height:18px; border:3px solid #fff; border-radius:6px; background:#300; overflow:hidden; box-shadow:0 0 0 3px #000; margin-top:3px; }
+  #hpFill { height:100%; width:100%; background:linear-gradient(90deg,#00ff3c,#ffe600); transition:width .8s cubic-bezier(.3,1.4,.5,1), background .8s; }
+  .dmg { position:absolute; right:0; top:-6px; font-size:22px; color:#ff3b30; animation:dmg 1s forwards; }
+  @keyframes dmg { to { transform:translateY(-30px); opacity:0; } }
+  #gameover { position:fixed; inset:0; z-index:40; display:none; flex-direction:column; align-items:center; justify-content:center; background:rgba(0,0,0,.97); }
+  #gameover.on { display:flex; animation:fadein .3s; }
+  #gameover b { font-family:Bungee,sans-serif; font-size:54px; color:#ff3b30; text-shadow:4px 4px 0 #600; animation:wob .5s infinite; }
+  #gameover span { font:700 24px "Comic Neue",cursive; color:#fff; margin-top:10px; }
+  /* lobo */
+  #s-wolf { background:radial-gradient(circle at 50% 30%, #1b2a4a 0%, #070b18 70%); overflow:hidden; z-index:5; }
+  #s-wolf.on { animation:fadein 2s; }
+  @keyframes fadein { from { opacity:0; } to { opacity:1; } }
+  .moon { position:absolute; top:12%; left:50%; width:170px; height:170px; margin-left:-85px; border-radius:50%; background:#fff6d8;
+    box-shadow:0 0 60px 20px #fff6d855, 0 0 160px 60px #9fb4ff33; }
+  .stars span { position:absolute; width:2px; height:2px; background:#fff; border-radius:50%; animation:tw 2s infinite; }
+  @keyframes tw { 50% { opacity:.2; } }
+  .hill { position:absolute; bottom:0; left:-10%; width:120%; height:30%; background:#02040a; border-radius:50% 50% 0 0; }
+  .wolf { position:absolute; bottom:27%; left:50%; width:190px; margin-left:-95px; }
+  .wolfSvg { width:100%; display:block; fill:#02040a; }
+  .wolf img { width:100%; display:none; }
+  .moon { animation:rise 5s ease-out both; }
+  @keyframes rise { from { transform:translateY(140px); opacity:.3; } to { transform:none; opacity:1; } }
+  .fog { position:absolute; left:-50%; width:200%; height:90px; bottom:18%; background:radial-gradient(ellipse at center, #b9c6ea33 0%, transparent 65%);
+    filter:blur(8px); animation:fog 14s linear infinite alternate; }
+  .fog.f2 { bottom:8%; height:70px; animation-duration:9s; animation-direction:alternate-reverse; }
+  @keyframes fog { from { transform:translateX(-12%); } to { transform:translateX(12%); } }
+  .shoot { position:absolute; width:120px; height:2px; background:linear-gradient(90deg,#fff,transparent); opacity:0; transform:rotate(-25deg); animation:shoot 5s linear infinite; }
+  @keyframes shoot { 0%{opacity:0; translate:0 0} 3%{opacity:1} 12%{opacity:0; translate:-260px 120px} 100%{opacity:0; translate:-260px 120px} }
+  .wolfTxt { opacity:0; animation:fadein 2s 2.5s forwards; }
+  .wolfTxt { position:absolute; z-index:2; bottom:8%; left:0; right:0; font-family:Bungee,sans-serif; font-size:26px; color:#fff6d8; text-shadow:0 0 16px #9fb4ff; padding:0 16px; }
+  .wolfTxt small { display:block; font:700 16px "Comic Neue",cursive; color:#b9c6ea; margin-top:8px; }
+  /* 404 */
+  #s-404 { background:#000; font-family:"Courier New",monospace; }
+  #s-404 .big404 { font-size:84px; color:#ff3b30; font-family:Bungee,sans-serif; }
+  #s-404 p { font-size:20px; color:#eee; }
+  #again { margin-top:40px; color:#555; font-size:13px; text-decoration:underline; background:none; border:0; font-family:inherit; }
   canvas { position:fixed; inset:0; pointer-events:none; }
 </style>
 </head>
 <body>
 <div id="floaters"></div>
 <div id="flash"></div>
+<div id="hp"><div>Juventud <span id="hpPct">100</span>%</div><div class="hpBar"><div id="hpFill"></div></div></div>
+<div id="gameover"><b>GAME OVER</b><span>eres viejo</span></div>
 
 <!-- Llamada -->
 <div class="screen on" id="s-call">
@@ -120,7 +173,7 @@
     <div class="callSub" id="callSub">llamada de movil</div>
     <div class="callName">Ministerio del Tiempo</div>
   </div>
-  <div class="avatar" id="avatar">🏛️</div>
+  <div class="avatar" id="avatar"><span id="avEmoji">🏛️</span><img src="escudo.png" alt="" style="display:none;width:100%;height:100%;border-radius:50%;object-fit:cover" onload="this.style.display='block';document.getElementById('avEmoji').style.display='none'"></div>
   <div class="subs" id="subs"></div>
   <div class="callBtns" id="callBtns">
     <div><button class="cb red" id="decline"><span>📞</span></button>Rechazar</div>
@@ -192,6 +245,7 @@
 <!-- Certificado -->
 <div class="screen" id="s-cert">
   <div class="paper"><div class="inner">
+    <div class="wm"><img src="lobo.png" alt="" style="width:100%;display:none" onload="this.style.display='block';this.nextElementSibling.style.display='none'"><svg viewBox="0 0 220 200" class="wolfSvg" aria-hidden="true"><polygon points="28,14 46,21 58,25 65,23 70,8 75,3 79,20 86,30 92,44 98,60 110,84 126,108 142,130 152,146 160,150 176,156 190,170 192,182 180,180 168,172 162,184 158,194 132,195 128,188 120,176 108,174 100,180 98,195 74,195 74,188 84,184 86,160 84,136 78,116 72,100 66,82 60,64 52,48 42,40 28,34 26,31 42,30 50,28 32,21 26,17"/></svg></div>
     <small>REPUBLICA DE LOS CUMPLEAÑOS</small>
     <h2>CERTIFICADO OFICIAL</h2>
     <p>Por el presente se certifica que</p>
@@ -212,19 +266,36 @@
       <div class="sub">Pago unico no te acostumbres gastalo en algo que no son skins</div>
       <div class="sub" style="margin-top:8px"><span id="payState">Estado <b>pago en proceso</b><br>Niko esta buscando su cartera <b id="payT">0:00</b></span></div>
     </div>
-    <div class="seal">APROBADO<span>🥔</span>OFICIAL</div>
     <div class="sign">
+      <div class="seal">APROBADO<span>🥔</span>OFICIAL</div>
       <div><div class="scrawl">Ministro</div>Ministerio del Tiempo</div>
       <div><div class="scrawl">Niko</div>desde Lituania</div>
     </div>
     <p class="tiny">Feliz cumpleaños</p>
-    <button class="b pink" id="nextBtn" style="margin-top:14px">Siguiente</button>
+    <button class="b cyan" id="shareBtn" style="margin-top:12px">Compartir</button>
+    <div class="msg" id="shareMsg" style="color:#7a00ff"></div>
   </div></div>
 </div>
 
-<!-- Se busca -->
-<div class="screen" id="s-wanted">
-  <img src="sebusca.jpg" alt="" id="wantedImg">
+
+<!-- Final lobo -->
+<div class="screen" id="s-wolf">
+  <div class="stars" id="stars"></div>
+  <div class="shoot" style="top:10%;left:80%;animation-delay:1s"></div>
+  <div class="shoot" style="top:22%;left:95%;animation-delay:3.5s"></div>
+  <div class="moon"></div>
+  <div class="fog"></div>
+  <div class="hill"></div>
+  <div class="wolf"><svg viewBox="0 0 220 200" class="wolfSvg" aria-hidden="true"><polygon points="28,14 46,21 58,25 65,23 70,8 75,3 79,20 86,30 92,44 98,60 110,84 126,108 142,130 152,146 160,150 176,156 190,170 192,182 180,180 168,172 162,184 158,194 132,195 128,188 120,176 108,174 100,180 98,195 74,195 74,188 84,184 86,160 84,136 78,116 72,100 66,82 60,64 52,48 42,40 28,34 26,31 42,30 50,28 32,21 26,17"/></svg><img src="lobo.png" alt="" onload="this.style.display='block';this.previousElementSibling.style.display='none'"></div>
+  <div class="fog f2"></div>
+  <div class="wolfTxt">Feliz cumpleaños lobo<small>de parte de Niko</small></div>
+</div>
+
+<!-- Segunda visita -->
+<div class="screen" id="s-404">
+  <div class="big404">404</div>
+  <p>Ya cobraste tu subsidio vete</p>
+  <button id="again">ver otra vez</button>
 </div>
 
 <canvas id="cf"></canvas>
@@ -237,7 +308,21 @@ const PAY = TOPIC + "-pago";               // Niko confirma el pago aquí
 document.getElementById("nm").textContent = NOMBRE;
 
 const $ = id => document.getElementById(id);
-const show = id => { document.querySelectorAll(".screen").forEach(s => s.classList.remove("on")); $(id).classList.add("on"); };
+const HP_SCREENS = ["s-cap","s-age","s-tap","s-oath","s-run"];
+const show = id => {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("on")); $(id).classList.add("on");
+  $("hp").classList.toggle("show", HP_SCREENS.includes(id));
+};
+let hp = 100;
+function dano(n) {
+  hp = Math.max(0, hp - n);
+  $("hpFill").style.width = hp + "%"; $("hpPct").textContent = hp;
+  if (hp <= 40) $("hpFill").style.background = "linear-gradient(90deg,#ff3b30,#ff8c00)";
+  const d = document.createElement("div"); d.className = "dmg"; d.textContent = "-" + n; $("hp").appendChild(d);
+  later(() => d.remove(), 1000);
+  $("hp").classList.remove("hit"); void $("hp").offsetWidth; $("hp").classList.add("hit");
+  SFX.hit();
+}
 const later = (f, ms) => setTimeout(f, ms);
 
 // ---------- avisos a Niko (ntfy) ----------
@@ -286,6 +371,10 @@ const SFX = {
   roll()  { for (let k = 0; k < 26; k++) noise(.05,.22 + k*.008,k*.05,2500); },
   fanfare(){ [523,659,784,1047].forEach((f,k) => tone(f,.22,"square",.1,k*.14)); tone(1047,.7,"square",.1,.56); tone(784,.7,"square",.07,.56); tone(659,.7,"square",.06,.56); },
   howl()  { tone(380,2.2,"sine",.25,0,760); tone(390,2.2,"triangle",.08,0,770); tone(700,1.4,"sine",.18,2.1,420); },
+  howl()  { tone(380,2.2,"sine",.25,0,760); tone(390,2.2,"triangle",.08,0,770); tone(700,1.6,"sine",.2,2.1,400); tone(705,1.6,"triangle",.06,2.1,405); },
+  hit()   { noise(.2,.35,0,800); tone(180,.25,"square",.12,0,70); },
+  stamp() { noise(.15,.6,0,300); tone(90,.2,"sine",.4,0,40); },
+  over()  { [392,330,262,196].forEach((f,k) => tone(f,.3,"square",.12,k*.28)); },
   coins() { for (let k = 0; k < 6; k++) { tone(1320,.08,"square",.07,k*.09); tone(1760,.12,"square",.07,k*.09+.04); } }
 };
 
@@ -400,7 +489,7 @@ $("capOk").onclick = () => {
   const n = document.querySelectorAll("#grid .sel").length, m = $("capMsg");
   if (n === 0) { SFX.err(); m.className = "msg bad"; m.textContent = "No elegiste nada sospechoso"; return; }
   if (capTries++ === 0) { SFX.err(); m.className = "msg bad"; m.textContent = "Te faltan abuelos mira mejor incluso el dinosaurio"; return; }
-  SFX.ok(); m.className = "msg"; m.textContent = "Correcto te reconociste a ti mismo";
+  SFX.ok(); dano(20); m.className = "msg"; m.textContent = "Correcto te reconociste a ti mismo";
   later(() => show("s-age"), 1500);
 };
 
@@ -414,7 +503,7 @@ let lieN = 0;
       SFX.err(); $("ageMsg").className = "msg bad"; $("ageMsg").textContent = lies[lieN++ % lies.length];
       b.textContent = "Viejo"; b.className = "b pink"; b.dataset.old = 1;
     } else {
-      SFX.ok(); $("ageMsg").className = "msg"; $("ageMsg").textContent = "Sinceridad confirmado por fin";
+      SFX.ok(); dano(20); $("ageMsg").className = "msg"; $("ageMsg").textContent = "Sinceridad confirmado por fin";
       later(() => show("s-tap"), 1400);
     }
   };
@@ -438,7 +527,7 @@ $("tap").addEventListener("pointerdown", e => {
 function finishTap() {
   tapDone = true;
   const v = taps < 25 ? "Fuerza de abuelo confirmado" : taps < 50 ? "Aceptable para tu edad" : "Sospechoso seguro usaste las dos manos";
-  SFX.ok(); $("tapMsg").textContent = v;
+  SFX.ok(); dano(20); $("tapMsg").textContent = v;
   later(() => show("s-oath"), 2200);
 }
 
@@ -452,7 +541,7 @@ $("oathOk").onclick = () => {
     if (oathFails > 2) $("oath").value = "soy viejo y lo acepto";
     return;
   }
-  $("oath").blur(); SFX.ok();
+  $("oath").blur(); SFX.ok(); dano(20);
   m.className = "msg"; m.textContent = "Juramento registrado ya no hay vuelta atras";
   later(() => { show("s-run"); placeBtn(true); }, 1500);
 };
@@ -488,19 +577,18 @@ addEventListener("resize", () => { if ($("s-run").classList.contains("on")) plac
 // ---------- Certificado ----------
 function openCert() {
   if (opened) return; opened = true;
-  SFX.roll();
-  btn.style.display = "none"; $("taunt").textContent = "🥁🥁🥁";
+  btn.style.display = "none"; $("taunt").textContent = "";
+  dano(20);
+  later(() => { $("gameover").classList.add("on"); SFX.over(); }, 900);
+  later(() => { $("gameover").classList.remove("on"); SFX.roll(); }, 3000);
   later(() => {
     show("s-cert"); SFX.fanfare(); confetti();
+    later(() => { document.querySelector(".seal").classList.add("drop"); SFX.stamp();
+      const pp = document.querySelector(".paper"); pp.classList.remove("thud"); void pp.offsetWidth; pp.classList.add("thud"); }, 1600);
     avisar(NOMBRE + " llego al certificado envia los 70 EUR y pulsa el boton", ["tada","moneybag"]);
     esperarPago();
-  }, 1400);
+  }, 4400);
 }
-
-$("nextBtn").onclick = () => {
-  show("s-wanted"); SFX.howl();
-  later(() => $("wantedImg").classList.add("in"), 50);
-};
 
 // ---------- Esperar confirmación de pago ----------
 let pagado = false;
@@ -508,6 +596,18 @@ function marcarPagado() {
   if (pagado) return; pagado = true;
   $("payState").innerHTML = "Estado <b>PAGADO</b><br>Revisa tu cuenta no gastes todo en skins";
   SFX.coins(); confetti();
+  try { localStorage.setItem("cobrado", "1"); } catch (e) {}
+  later(finalLobo, 5000);
+}
+function finalLobo() {
+  for (let k = 0; k < 60; k++) {
+    const st = document.createElement("span");
+    st.style.left = Math.random() * 100 + "%"; st.style.top = Math.random() * 60 + "%";
+    st.style.animationDelay = Math.random() * 2 + "s";
+    $("stars").appendChild(st);
+  }
+  document.body.classList.remove("party");
+  show("s-wolf"); SFX.howl();
 }
 function esperarPago() {
   const t0 = Date.now();
@@ -523,6 +623,20 @@ function esperarPago() {
     };
   } catch (e) {}
 }
+
+// ---------- Compartir ----------
+$("shareBtn").onclick = async () => {
+  const url = location.href.split("#")[0], txt = "Me declararon oficialmente viejo";
+  try { if (navigator.share) { await navigator.share({ title: "Aviso oficial", text: txt, url: url }); return; } } catch (e) { return; }
+  try { await navigator.clipboard.writeText(txt + " " + url); $("shareMsg").textContent = "Link copiado"; }
+  catch (e) { $("shareMsg").textContent = url; }
+};
+
+// ---------- Segunda visita ----------
+try {
+  if (localStorage.getItem("cobrado") === "1") show("s-404");
+} catch (e) {}
+$("again").onclick = () => { try { localStorage.removeItem("cobrado"); } catch (e) {} location.reload(); };
 
 // ---------- Confeti ----------
 function confetti() {
